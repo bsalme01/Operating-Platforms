@@ -1,0 +1,104 @@
+ 
+
+Draw it or Lose It 
+CS 230 Project Software Design Template
+Version 1.0
+ 
+Table of Contents
+
+CS 230 Project Software Design Template	1
+Table of Contents	2
+Document Revision History	2
+Executive Summary	3
+Requirements	3
+Design Constraints	3
+System Architecture View	3
+Domain Model	3
+Evaluation	4
+Recommendations	5
+
+
+Document Revision History
+
+Version	Date	Author	Comments
+1.0	05/18/2026	Bryan Salmeron	Initial software design document for The Gaming Room project
+
+Instructions 
+Fill in all bracketed information on page one (the cover page), in the Document Revision History table, and below each header. Under each header, remove the bracketed prompt and write your own paragraph response covering the indicated information.  
+Executive Summary
+
+	The Gaming Room wants to expand its game, Draw It or Lose It, from being an Android-only app into a web based application that can run across multiple platforms. The main goal of the project is to create a system that allows multiple teams and players to join games while keeping everything organized and running smoothly. The application also needs to make sure game names and team names are unique and that only one instance of the game service exists in memory at a time.
+	To solve these problems, the application will use object oriented programming principles and software design patterns. The singleton pattern will make sure only one GameService object exists, while the iterator pattern will help search through games, teams, and players efficiently. The project will also use inheritance with a shared Entity class to reduce duplicate code and make the application easier to manage and update later.
+	The recommended solution is to develop the game as a web based distributed application using Java and a Linux server environment. Linux is a strong option because it is reliable, secure, scalable, and works well for hosting web applications. This design will allow The Gaming Room to support users across different devices and operating systems while keeping the application flexible for future updates and improvements.
+
+Requirements
+
+The Gaming Room wants to expand Draw It or Lose It from an Android only game into a web based application that can support multiple platforms and devices. The application must allow one or more teams to participate in a game, and each team can contain multiple players. The system also needs to ensure that game names and team names are unique so users do not accidentally create duplicates.
+Another important requirement is that only one instance of the GameService class can exist in memory at one time. This will allow the application to manage all games, teams, and players from a single service. The system must also generate unique identifiers for each game, team, and player object that is created.
+From a technical standpoint, the application should be scalable, secure, and able to operate in a distributed web based environment. The design should support multiple operating systems and devices while maintaining good performance and reliability. The application should also follow object oriented programming principles and use software design patterns to improve organization, efficiency, and maintainability.
+
+Design Constraints
+
+One major design constraint for the Draw It or Lose It application is that the system must operate in a distributed web based environment that supports multiple platforms and devices. Because users may access the game from Windows, Mac, Linux, or mobile devices, the application must remain compatible across different operating systems and screen sizes. This requires developers to focus on portability and responsive design during development.
+Another design constraint is the requirement that only one instance of the GameService class can exist in memory at a time. To solve this issue, the singleton design pattern is used to control how objects are created and accessed throughout the application. This helps maintain consistency across the system and prevents duplicate game services from being created.
+The application must also ensure that game names and team names are unique. This creates additional processing requirements because the system must search through existing collections before adding new games, teams, or players. The iterator pattern helps solve this issue by allowing the application to efficiently loop through stored objects and check for duplicate names.
+Performance and scalability are also important constraints because the application may eventually support many users at the same time. The software must be able to manage multiple games, teams, and players without slowing down or crashing. Security is another important factor because user information and game data must be protected across networks and devices.
+Finally, the development team must consider cost, maintenance, and long term support when selecting tools and operating platforms. Choosing Java as the programming language helps solve many compatibility issues because Java applications can run on multiple operating systems using the Java Virtual Machine.
+
+
+System Architecture View
+
+Please note: There is nothing required here for these projects, but this section serves as a reminder that describing the system and subsystem architecture present in the application, including physical components or tiers, may be required for other projects. A logical topology of the communication and storage aspects is also necessary to understand the overall architecture and should be provided.
+
+The Draw It or Lose It application will use a distributed web based architecture that allows users to connect from different devices and operating systems through a network connection. The application will use a client server model where users access the game through client devices while the main application logic and storage are managed on the server side. This structure allows the system to support multiple users at the same time while maintaining performance, scalability, and centralized data management. 
+
+
+Domain Model
+
+	The UML class diagram for The Gaming Room application shows how the different classes work together to support the Draw It or Lose It game. The diagram is designed using object oriented programming principles to create a system that is organized, reusable, and easy to maintain.
+	The Entity class acts as the base class for the application. It contains the common attributes shared by the other classes, including the id and name fields. The Game, Team, and Player classes all inherit from Entity, which demonstrates the object oriented principle of inheritance. By using inheritance, the application avoids duplicate code and keeps shared functionality centralized in one class.
+	The Game class represents a game instance and contains a list of Team objects. Each game can have multiple teams assigned to it. The Team class contains a list of Player objects, allowing multiple players to belong to a team. This relationship demonstrates composition because games are made up of teams and teams are made up of players.
+	The GameService class manages the application data and controls the creation of games, teams, and players. This class uses the singleton design pattern, which ensures that only one instance of GameService exists in memory at a time. This supports the client requirement that only one game service instance can manage the application data. The GameService class also handles unique identifiers for games, teams, and players by using incrementing ID values.
+	The iterator pattern is used in methods such as addGame(), addTeam(), and addPlayer(). Before creating a new object, the system searches existing collections to verify that names are unique. This fulfills the client requirement that game names and team names cannot be duplicated.
+	The ProgramDriver class is responsible for running the application, while the SingletonTester class is used to test that the singleton pattern works correctly. Together, the classes in the UML diagram create a structured design that supports scalability, maintainability, and efficient game management for a web based distributed environment.
+
+
+ 
+
+Evaluation
+
+Using your experience to evaluate the characteristics, advantages, and weaknesses of each operating platform (Linux, Mac, and Windows) as well as mobile devices, consider the requirements outlined below and articulate your findings for each. As you complete the table, keep in mind your client’s requirements and look at the situation holistically, as it all has to work together. 
+
+In each cell, remove the bracketed prompt and write your own paragraph response covering the indicated information. 
+
+Development Requirements	Mac	Linux	Windows	Mobile Devices
+Server Side	Mac can support hosting a web based application, but it is not commonly used for large scale server environments compared to Linux or Windows. One advantage of Mac is its strong security features and stable Unix based architecture. It also works well for developers already using the Apple ecosystem. However, Mac servers can be more expensive to maintain and upgrade, which may increase overall development and hosting costs. Because of these limitations, Mac would work better for development purposes than as the primary server environment for Draw It or Lose It.	Linux is one of the best choices for hosting a web based application because it is reliable, secure, scalable, and cost effective. Many large web applications use Linux servers because they can handle high amounts of traffic and performance demands efficiently. Linux also supports Java development very well and works smoothly with cloud and distributed environments. Another advantage is that Linux is open source, which helps reduce licensing costs. The main weakness is that Linux may require more technical knowledge for setup and maintenance compared to other operating systems.	Windows servers are user friendly and provide strong support for enterprise applications and development tools. One advantage of Windows is its compatibility with many business environments and Microsoft services. It also offers a familiar interface for developers and administrators. However, Windows servers are usually more expensive because of licensing costs, and they may require more system resources compared to Linux. While Windows can successfully host a web based application, it may not be the most cost effective option for The Gaming Room.	Mobile devices are not typically used as servers for web based applications because they have limited processing power, storage, and network reliability compared to dedicated servers. While mobile devices are useful for accessing and playing the game, they are not designed to host large distributed applications. Mobile operating systems also have battery and performance limitations that make them less practical for server side operations. Because of this, mobile devices are better suited for client side access rather than hosting the Draw It or Lose It application.
+Client Side	Mac systems provide a reliable and user friendly environment for accessing web based applications. One advantage is that Mac devices have strong performance, good security features, and compatibility with modern web browsers. Supporting Mac clients may require additional testing to ensure compatibility with Safari and other Apple specific features. Development costs may also increase slightly because developers may need access to Apple hardware for testing. Overall, Mac devices are a strong client side option for users playing Draw It or Lose It.	Linux systems can support web based applications effectively through modern browsers and Java compatibility. One advantage is that Linux is flexible, secure, and free to use, which makes it attractive for some users and developers. However, Linux has many different distributions, which can create compatibility and testing challenges during development. Supporting Linux clients may also require additional technical expertise because some users may use different browser or system configurations. Even with these challenges, Linux remains a reliable option for accessing the application.	Windows is one of the most common operating systems used by consumers, making it an important platform to support for Draw It or Lose It. Windows devices are compatible with most browsers and development tools, which helps reduce compatibility issues for users. One advantage is the large user base and familiarity of the operating system. However, supporting Windows clients may require additional security considerations because Windows systems are more commonly targeted by malware and cyber threats. Overall, Windows provides strong accessibility and compatibility for users playing the game.	Mobile devices are very important for supporting a modern web based game because many users access applications through smartphones and tablets. Mobile devices provide convenience and portability, allowing users to play from almost anywhere with an internet connection. However, developers must consider different screen sizes, operating systems, and hardware limitations when designing the application. Additional development time and testing may be required to ensure the game performs smoothly on both Android and iOS devices. Even with these challenges, mobile device support is necessary for reaching a larger audience.
+Development Tools	Mac systems support many modern programming languages and development tools used for web based applications. Java is one of the main programming languages that can be used to develop Draw It or Lose It because it works across multiple platforms. Developers on Mac can use IDEs such as Eclipse, IntelliJ IDEA, and Visual Studio Code to build and test the application. Mac also provides strong support for web development tools and browser testing environments. However, Apple hardware can be more expensive compared to other development platforms.	Linux supports a wide range of programming languages, frameworks, and development tools used for web based software development. Java works especially well in Linux environments, making it a strong choice for developing and hosting Draw It or Lose It. Developers can use IDEs such as Eclipse, IntelliJ IDEA, and Visual Studio Code for coding and testing. Linux also provides powerful command line tools and server management utilities that are commonly used in professional development environments. One advantage is that most Linux tools are open source and free to use, helping reduce development costs.	Windows provides strong support for software development and is compatible with many programming languages and IDEs. Developers can use Java along with tools such as Eclipse, IntelliJ IDEA, and Visual Studio Code to create and test the application. Windows is also compatible with many debugging and networking tools that help during development. One advantage is the familiarity and accessibility of the operating system for many developers. However, some development tools and server utilities may perform more efficiently in Linux environments.	Mobile devices support web based applications through mobile browsers and app development tools. Developers creating support for mobile users may use frameworks and testing tools designed for Android and iOS environments. Java is commonly used for Android development, while tools such as Android Studio and mobile testing platforms help developers ensure compatibility across devices. One challenge is that mobile devices have different hardware specifications, operating systems, and screen sizes, which increases testing and optimization requirements. Supporting mobile devices is important because it allows Draw It or Lose It to reach a wider audience.
+
+ 
+Recommendations
+
+Analyze the characteristics of and techniques specific to various systems architectures and make a recommendation to The Gaming Room. Specifically, address the following:
+
+1.	Operating Platform: 
+Linux is the recommended operating platform for The Gaming Room because it provides strong performance, security, scalability, and reliability for hosting a web based application. Linux is commonly used in professional server environments and supports Java development very well. Another major advantage is that Linux is open source, which helps reduce licensing and operating costs for the company. Since Draw It or Lose It needs to support multiple users and platforms at the same time, Linux provides a stable environment that can efficiently manage distributed web applications and future growth.
+
+2.	Operating Systems Architectures: 
+	The recommended Linux operating system architecture uses a distributed client server model. In this structure, the server handles the main application logic, game management, and storage while client devices connect through a network using web browsers or mobile applications. Linux supports multitasking and multiuser operations efficiently, which allows multiple players and teams to access the application at the same time. The architecture also supports scalability, meaning additional servers or cloud resources can be added later if the number of users increases. This makes Linux a strong choice for supporting the long term growth of Draw It or Lose It.
+	
+3.	Storage Management: 
+A relational database management system such as MySQL would be an effective storage solution for Draw It or Lose It. MySQL works well with Java applications and provides reliable data storage for games, teams, players, and user information. Using a database system allows the application to organize and retrieve information efficiently while supporting multiple users at the same time. MySQL also provides backup and recovery features that help protect important data. Since the application may continue to grow in the future, a relational database system offers good scalability and long-term reliability for storage management.
+
+4.	Memory Management: 
+Linux uses efficient memory management techniques that help improve application performance and stability. The operating system manages memory allocation between processes and applications to prevent unnecessary resource usage and system crashes. Since Draw It or Lose It will support multiple users and games at the same time, effective memory management is important for maintaining smooth performance. Java also includes automatic garbage collection, which helps remove unused objects from memory and reduces memory leaks. Together, Linux and Java provide a reliable environment for managing system resources efficiently.
+
+5.	Distributed Systems and Networks: 
+Draw It or Lose It can communicate across multiple platforms by using distributed systems and network communication technologies. In a distributed environment, the server manages the main game data and application logic while client devices connect through the internet using browsers or mobile applications. This allows players using different operating systems and devices to interact with the same game session in real time.
+The application will depend on stable network connectivity between the server and client devices. If network outages or connection issues occur, users may experience delays or interruptions during gameplay. To reduce these risks, the system should use reliable server hosting, backup systems, and secure network communication protocols. Using distributed networking also allows the application to scale more easily as the number of users increases in the future.
+
+6.	Security: 
+Security is an important requirement for The Gaming Room because the application will store user and game information across multiple platforms and networks. Linux provides strong built in security features such as user permission controls, encryption support, and regular security updates that help protect the server environment. The application should also use secure communication protocols such as HTTPS to protect data being transferred between users and the server.
+User authentication and access controls should be implemented to prevent unauthorized access to accounts and game information. Passwords should be encrypted before being stored in the database to improve account security. The system should also use firewalls, regular software updates, and monitoring tools to reduce the risk of cyberattacks and data breaches. By combining Linux security features with secure software development practices, Draw It or Lose It can provide a safer experience for users across different platforms.
+
+
